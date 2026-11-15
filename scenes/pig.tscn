@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://vu1pklxgodkf"]
+
+[ext_resource type="Script" uid="uid://bjmssp1q7x0o5" path="res://scripts/pig.gd" id="1_4a8uq"]
+[ext_resource type="Texture2D" uid="uid://cudmxevqye5jb" path="res://assets/images/pig/Run (34x28).png" id="1_sq5kf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4a8uq"]
+atlas = ExtResource("1_sq5kf")
+region = Rect2(0, 0, 34, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j740r"]
+atlas = ExtResource("1_sq5kf")
+region = Rect2(34, 0, 34, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ct3s0"]
+atlas = ExtResource("1_sq5kf")
+region = Rect2(68, 0, 34, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7e1yb"]
+atlas = ExtResource("1_sq5kf")
+region = Rect2(102, 0, 34, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bnrkt"]
+atlas = ExtResource("1_sq5kf")
+region = Rect2(136, 0, 34, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e1p3k"]
+atlas = ExtResource("1_sq5kf")
+region = Rect2(170, 0, 34, 28)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_06txj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4a8uq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j740r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ct3s0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7e1yb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bnrkt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e1p3k")
+}],
+"loop": 1,
+"name": &"running",
+"speed": 20.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_06txj"]
+size = Vector2(59, 52)
+
+[node name="Pig" type="Area2D" unique_id=544665046]
+script = ExtResource("1_4a8uq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=473435999]
+texture_filter = 1
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_06txj")
+animation = &"running"
+autoplay = "running"
+frame = 1
+frame_progress = 0.33333328
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1871480138]
+position = Vector2(8.5, 14)
+shape = SubResource("RectangleShape2D_06txj")
+
+[node name="Timer" type="Timer" parent="." unique_id=470256814]
+wait_time = 2.0
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
